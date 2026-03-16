@@ -46,4 +46,4 @@ public:
 	BOOL writeBits(bitBucketType bitBucket, bitCountType aCount);
 };
 
-#endif  __BITOUTPUT_H_
+#endif // __BITOUTPUT_H_

@@ -103,8 +103,9 @@ BOOL MTCoutputBitStream::writeBits(bitBucketType aBucket, bitCountType aCount)
 	if (aCount>(sizeof(bitBucketType)*8))
 	{
 		char message[300];
+		unsigned long maxBits = static_cast<unsigned long>(sizeof(bitBucketType) * 8);
 
-		sprintf(message, "writeBits() overflow.  The calling function requested %d bits.  The bitBucketType can only hold %d bits.  I will only write %d bits to the stream.", aCount, sizeof(bitBucketType)*8); 
+		sprintf(message, "writeBits() overflow.  The calling function requested %lu bits.  The bitBucketType can only hold %lu bits.  I will only write %lu bits to the stream.", static_cast<unsigned long>(aCount), maxBits, maxBits); 
 
 		errorMsg(EMT_WARNING, message, "MTCoutputBitStream::writeBits()");
 
@@ -126,7 +127,7 @@ BOOL MTCoutputBitStream::writeBits(bitBucketType aBucket, bitCountType aCount)
 
 #ifdef DEBUG
 	cout << ":";   
-#endif DEBUG
+#endif // DEBUG
 
 	for(; aCount>0; aCount--)
 	{
@@ -135,7 +136,7 @@ BOOL MTCoutputBitStream::writeBits(bitBucketType aBucket, bitCountType aCount)
 
 #ifdef DEBUG
 		cout << ((aBucket&sigDigBitBucketMask)!=0) << " ";
-#endif DEBUG
+#endif // DEBUG
 
 		incBufferSize();
 

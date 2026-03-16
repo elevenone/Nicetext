@@ -123,8 +123,9 @@ bitBucketType MTCinputBitStream::readBits(bitCountType aCount)
 	if (aCount>(sizeof(bitBucketType)*8))
 	{
 		char message[300];
+		unsigned long maxBits = static_cast<unsigned long>(sizeof(bitBucketType) * 8);
 
-		sprintf(message, "readBits() overflow.  The calling function requested %d bits.  The bitBucketType can only hold %d bits.  I will only read %d bits from the stream.", aCount, sizeof(bitBucketType)*8); 
+		sprintf(message, "readBits() overflow.  The calling function requested %lu bits.  The bitBucketType can only hold %lu bits.  I will only read %lu bits from the stream.", static_cast<unsigned long>(aCount), maxBits, maxBits); 
 
 		errorMsg(EMT_WARNING, message, "MTCinputBitStream::readBits()");
 
@@ -137,7 +138,7 @@ bitBucketType MTCinputBitStream::readBits(bitCountType aCount)
 
 #ifdef DEBUG
 	cout << endl;
-#endif DEBUG
+#endif // DEBUG
 
 	for(; aCount>0; aCount--)
 	{
@@ -152,7 +153,7 @@ bitBucketType MTCinputBitStream::readBits(bitCountType aCount)
 
 #ifdef DEBUG
 		cout << ((buffer&sigDigBitBucketMask)!=0) << " ";
-#endif DEBUG
+#endif // DEBUG
 		buffer = buffer << 1;
 
 		decBufferSize();

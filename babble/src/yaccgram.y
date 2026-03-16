@@ -186,11 +186,12 @@ weightedRhsTokens:
 	;
 %%
 
-int yyerror(char *s)
+int yyerror(const char *s)
 {
 	char buffer[1024];
 
-	sprintf(buffer, "Syntax Error on line # %d of %s", lexline, yGram->getFileName().c_str());
+	sprintf(buffer, "Syntax Error on line # %ld of %s", lexline, yGram->getFileName().c_str());
 
 	errorMsg(EMT_ABORT, buffer, "yyerror()");
+	return 0;
 }

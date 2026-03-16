@@ -25,4 +25,4 @@ static char rcsid__LEXWORD_H_ []  = "@(#)$Id: lexword.h,v 1.2 1997/03/05 17:39:0
 #define END_OF_SENTENCE 1
 #define PUNCTUATION	3
 
-#endif __LEXWORD_H_
+#endif // __LEXWORD_H_

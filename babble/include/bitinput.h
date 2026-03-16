@@ -46,4 +46,4 @@ public:
 
 };
 
-#endif  __BITINPUT_H_
+#endif // __BITINPUT_H_

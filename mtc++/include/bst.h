@@ -495,4 +495,4 @@ inline void MTCBSTFreq <T>::forEachNodeFreq(MTCBSTNodeFreq <T> *aNodePtr, void (
         forEachNodeFreq((MTCBSTNodeFreq <T> *)aNodePtr->right, doIt);
 }
 
-#endif __BST_H_
+#endif // __BST_H_

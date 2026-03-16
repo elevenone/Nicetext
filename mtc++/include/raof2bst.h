@@ -74,4 +74,4 @@ public:
 
 };
 
-#endif __ROAFALT_H_
+#endif // __ROAFALT_H_

@@ -574,4 +574,4 @@ inline void MTCRBTFreq <T>::forEachNodeFreq(MTCRBTNodeFreq <T> *aNodePtr, void (
         forEachNodeFreq((MTCRBTNodeFreq <T> *)aNodePtr->r, doIt);
 }
 
-#endif __RBT_H_
+#endif // __RBT_H_

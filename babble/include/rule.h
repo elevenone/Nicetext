@@ -148,4 +148,4 @@ public:
 	friend ostream & operator<<(ostream &s, MTCrule &r);
 };
 
-#endif  __RULE_H_
+#endif // __RULE_H_

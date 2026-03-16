@@ -18,7 +18,7 @@
 #else
 #include <sys/types.h>
 #include <sys/stat.h>
-#endif UNIX
+#endif /* UNIX */
 #include <dirent.h>
 
 #ifndef MAXPATH
@@ -63,7 +63,7 @@ int processDir(char *dirname)
 		{
 			char newDirName[MAXPATH+1];
 			strcpy(newDirName, dirname);
-			newDirName[strlen(newDirName)-1]=NULL;
+			newDirName[strlen(newDirName)-1]='\0';
 			return processDir(newDirName);
 		}
 	}
@@ -230,14 +230,14 @@ int processRCSfile(char *dirname, char *file, FILE *snapshot)
 		}
 		else
 		{
-			buffer[HEADCOUNT]=NULL;
+			buffer[HEADCOUNT]='\0';
 			if (strncmp(buffer, HEADSTRING, strlen(HEADSTRING))==0)
 			{
 				for(i=strlen(HEADSTRING)-1; i<=HEADCOUNT; i++)
 				{
 					if (buffer[i]==';')
 					{
-						buffer[i]=NULL;
+						buffer[i]='\0';
 						break;
 					}
 				}
@@ -308,7 +308,7 @@ int processRCSfile(char *dirname, char *file, FILE *snapshot)
 			c=fgetc(fp);
 		}
 
-		logName[logPos]=NULL;
+		logName[logPos]='\0';
 
 		/* we found who has the lock! */
 
@@ -330,7 +330,7 @@ int processRCSfile(char *dirname, char *file, FILE *snapshot)
 		struct stat fstat;
 		int slen; 
 		strncpy(parentDir, dirname, (strlen(dirname)-3)); /* remove "RCS" from dir name */
-		parentDir[strlen(dirname)-3]=NULL;
+		parentDir[strlen(dirname)-3]='\0';
 		sprintf(parentFile, "%s%s", parentDir, file);
 
 		/* remove a ",v" extension */
@@ -338,7 +338,7 @@ int processRCSfile(char *dirname, char *file, FILE *snapshot)
 		if ((slen=strlen(parentFile))>2)
 		{
 			if (strcmp(&parentFile[slen-2], ",v")==0)
-				parentFile[slen-2]=NULL;
+				parentFile[slen-2]='\0';
 		}
 
 		if (stat(parentFile, &fstat)==-1)
@@ -382,7 +382,7 @@ void printProgress(char *message)
 	l=strlen(message);
 
 	strncpy(buffer, message, SCREENWIDTH);
-	buffer[SCREENWIDTH]=NULL;
+	buffer[SCREENWIDTH]='\0';
 
 	if (l<SCREENWIDTH)
 	{
@@ -496,4 +496,3 @@ char *cleanStr(char *aString)
 
 	return aString;
 }
-

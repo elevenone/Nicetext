@@ -159,6 +159,7 @@ BOOL postResponse(MTCstringList &os, int fd);
 MTCstring & recvStrBuf(int fd, MTCstring &);
 const char * noCaseStrStr(const char *big, const char *little, BOOL prefix=FALSE);
 void usage();
+MTCstring createTempFileName(const char *prefixTag);
 
 int hexdigit(char c);
 
@@ -168,6 +169,23 @@ MTCstring workDir(WORKDIR);
 MTCstring tmpDir(TMPDIR);
 int myPort=MYPORT;
 BOOL localHostOnly=TRUE;
+
+MTCstring createTempFileName(const char *prefixTag)
+{
+	char path[MAXPATH];
+
+	snprintf(path, sizeof(path), "%s/%sXXXXXX", tmpDir.c_str(), prefixTag);
+
+	int fd = mkstemp(path);
+	if (fd == -1)
+	{
+		perror(path);
+		return MTCstring();
+	}
+
+	close(fd);
+	return MTCstring(path);
+}
 
 int main(int argc, char *argv[])
 {
@@ -218,7 +236,7 @@ int main(int argc, char *argv[])
 	{
 		DEBUGMSG(cout << "OH NO! - YOU MUST SET CLS_LEN to " << strlen(CONTENT_LENGTH_STR) << " instead of " << CLS_LEN <<" in nttpd.cc " << endl;)
 	}
-#endif DEBUG 
+#endif // DEBUG 
 
 	// start processing
 
@@ -896,7 +914,7 @@ use the reload button on your browser for another try!</P>\
 <TEXTAREA NAME=PLAINTEXT COLS=80 ROWS=12>\
 ");
 
-	MTCstring plainTextFileName(tempnam(tmpDir.c_str(), "nttp-pt"));
+	MTCstring plainTextFileName(createTempFileName("nttp-pt"));
 
 	ofstream plainTextFile(plainTextFileName.c_str());
 
@@ -991,7 +1009,7 @@ use the reload button on your browser for another try!</P>\
 		{
 			converter->setStatFreq(0);	// do not show stats
 
-			MTCstring niceTextFileName(tempnam(tmpDir.c_str(), "nttp-nt"));
+			MTCstring niceTextFileName(createTempFileName("nttp-nt"));
 
 			if (converter->openOutputName(niceTextFileName)==FALSE)
 			{
@@ -1049,6 +1067,7 @@ use the reload button on your browser for another try!</P>\
 </BODY>\
 </HTML>\
 ");
+	return TRUE;
 }
 
 // send a stop request for keep-alive functions
@@ -1091,7 +1110,7 @@ rather than a problem with the basic transformation software.)</P>\
 <TEXTAREA NAME=PLAINTEXT COLS=80 ROWS=12 READONLY=\"YES\">\
 ");
 
-	MTCstring plainTextFileName(tempnam(tmpDir.c_str(), "nttp-pt"));
+	MTCstring plainTextFileName(createTempFileName("nttp-pt"));
 
 	ofstream plainTextFile(plainTextFileName.c_str());
 
@@ -1179,7 +1198,7 @@ rather than a problem with the basic transformation software.)</P>\
 		{
 			converter->setVerboseMode(FALSE);
 
-			MTCstring niceTextFileName(tempnam(tmpDir.c_str(), "nttp-nt"));
+			MTCstring niceTextFileName(createTempFileName("nttp-nt"));
 
 			if (converter->openOutputName(niceTextFileName)==FALSE)
 			{
@@ -1216,6 +1235,7 @@ rather than a problem with the basic transformation software.)</P>\
 </BODY>\
 </HTML>\
 ");
+	return TRUE;
 }
 
 // kill any remaining zombie processes
@@ -1332,7 +1352,7 @@ const char * noCaseStrStr(const char *big, const char *little, BOOL prefix)
 
 #ifdef DEBUG
 	int loop=0;
-#endif DEBUG
+#endif // DEBUG
 
 	for(int i=0; (((prefix==FALSE)&&(i<bigLen))||((prefix==TRUE)&&(i==0))); i++)
 	{
@@ -1342,7 +1362,7 @@ const char * noCaseStrStr(const char *big, const char *little, BOOL prefix)
 		{
 #ifdef DEBUG
 			loop++;
-#endif DEBUG
+#endif // DEBUG
 
 			if ((tolower(big[i+j])==(littleStr.c_str()[j])))
 			{

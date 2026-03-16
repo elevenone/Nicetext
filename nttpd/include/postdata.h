@@ -23,6 +23,7 @@ public:
 	MTCpostData & operator=(const MTCpostData &pd)
 	{
 		param=pd.param; value=pd.value;
+		return *this;
 	}
 
 	int operator==(const MTCpostData &pd)
@@ -36,4 +37,4 @@ public:
 	}
 };
 
-#endif POSTDATA_H__
+#endif // POSTDATA_H__

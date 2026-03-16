@@ -8,11 +8,10 @@ int main()
    unsigned int s2;
    unsigned short s3;
 
-   printf("Size of unsigned long: %i\n", sizeof(s1));
-   printf("Size of unsigned int: %i\n", sizeof(s2));
-   printf("Size of unsigned short: %i\n", sizeof(s3));
+   printf("Size of unsigned long: %lu\n", sizeof(s1));
+   printf("Size of unsigned int: %lu\n", sizeof(s2));
+   printf("Size of unsigned short: %lu\n", sizeof(s3));
 
    return(0);
 }
-
 

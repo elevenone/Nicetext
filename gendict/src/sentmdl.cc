@@ -188,7 +188,7 @@ int MTCsentenceModel::isLessThan(MTCsentenceModel & aSrc)
 
 	if (aSrc.list.getCount()==list.getCount())
 	{
-		for(str1=aSrc.list.getFirst(), str2=list.getFirst(); str1!=NULL, str2!=NULL; str1=aSrc.list.getNext(), str2=list.getNext())
+		for(str1=aSrc.list.getFirst(), str2=list.getFirst(); str1!=NULL && str2!=NULL; str1=aSrc.list.getNext(), str2=list.getNext())
 		{
 			if (*str1<*str2)
 			{
@@ -221,7 +221,7 @@ int MTCsentenceModel::isEqual(MTCsentenceModel & aSrc)
 	{
 		retVal=TRUE;
 
-		for(str1=aSrc.list.getFirst(), str2=list.getFirst(); str1!=NULL, str2!=NULL; str1=aSrc.list.getNext(), str2=list.getNext())
+		for(str1=aSrc.list.getFirst(), str2=list.getFirst(); str1!=NULL && str2!=NULL; str1=aSrc.list.getNext(), str2=list.getNext())
 		{
 			if (*str1!=*str2)
 			{
@@ -289,4 +289,3 @@ MTCsentenceModel & MTCsentenceModel::operator=(MTCsentenceModel &aSrc)
 
         return *this;
 }
-

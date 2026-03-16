@@ -131,4 +131,4 @@ public:
 	}
 };
 
-#endif __STRLST_H__
+#endif // __STRLST_H__

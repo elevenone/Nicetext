@@ -164,7 +164,7 @@ public:
 
 	// methods
 	int append(T *);
-	int append(T &aT) { append(&aT); };
+	int append(T &aT) { return append(&aT); };
 	void setNeedEOL(BOOL aBool) { needEOL=(aBool!=FALSE); };
 	BOOL getNeedEOL() const     { return needEOL; };
 };
@@ -237,7 +237,7 @@ inline MTCwriteRAOF <T>::~MTCwriteRAOF()
 #ifdef APPEND_LENGTH_TO_JMP
 #ifdef DEBUG
 		cout << "Output Count: " << count << endl;
-#endif DEBUG
+#endif // DEBUG
 		jumpFile->write((void *)&count, sizeof(long));
 #endif // APPEND_LENGTH_TO_JMP
 		delete jumpFile;
@@ -267,6 +267,7 @@ inline int MTCwriteRAOF <T>::append(T *aT)
 	}
 
 	count++;
+	return 0;
 }
 
 // read shared constructor code
@@ -296,7 +297,7 @@ inline void MTCreadRAOF <T>::init()
 		jumpFile->seekg(-offset, ios::end);
 #ifdef DEBUG
 		cout << "Jump TO: " << jumpFile->tellg() << endl;
-#endif DEBUG
+#endif // DEBUG
 
 		jumpFile->read((void *)&count, sizeof(raofJumpTableType)); // sizeof(long));
 #else  
@@ -389,13 +390,13 @@ inline const T * MTCreadRAOF <T>::find(T &aT)
 		cout << "low: " << low << "mid: " << middle << "hi: " << high << endl;
 		cout << "find:" << aT;
 		cout << "buff:" << value;
-#endif DEBUG
+#endif // DEBUG
 
 		if (aT==value)
 		{
 #ifdef DEBUG
 			cout << "EQUAL" << endl;
-#endif DEBUG
+#endif // DEBUG
 			return &value;	// found it!!!
 		}
 
@@ -403,14 +404,14 @@ inline const T * MTCreadRAOF <T>::find(T &aT)
 		{
 #ifdef DEBUG
 			cout << ">" << endl;
-#endif DEBUG
+#endif // DEBUG
 			low=middle+1;
 		}
 		else
 		{
 #ifdef DEBUG
 			cout << "<" << endl;
-#endif DEBUG
+#endif // DEBUG
 			high=middle-1;
 		}
 	}
@@ -418,4 +419,4 @@ inline const T * MTCreadRAOF <T>::find(T &aT)
 	return NULL;
 }
 
-#endif __ROAF_H_
+#endif // __ROAF_H_

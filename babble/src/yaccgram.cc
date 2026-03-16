@@ -206,13 +206,14 @@ YYSTYPE *yyvs;
 int yystacksize;
 #line 188 "yaccgram.y"
 
-int yyerror(char *s)
+int yyerror(const char *s)
 {
 	char buffer[1024];
 
-	sprintf(buffer, "Syntax Error on line # %d of %s", lexline, yGram->getFileName().c_str());
+	sprintf(buffer, "Syntax Error on line # %ld of %s", lexline, yGram->getFileName().c_str());
 
 	errorMsg(EMT_ABORT, buffer, "yyerror()");
+	return 0;
 }
 #line 216 "y.tab.c"
 /* allocate initial stack or double stack size, up to YYMAXDEPTH */

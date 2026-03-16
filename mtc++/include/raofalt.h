@@ -89,7 +89,7 @@ public:
 
 	// overloaded assignment operator
 	MTCaltJmpNode & operator=(const MTCaltJmpNode <T> &aSrc)
-		{ value=aSrc.getValue(); jumpPos=aSrc.getJumpPos(); };
+		{ value=aSrc.getValue(); jumpPos=aSrc.getJumpPos(); return *this; };
 
 	// minimal set of comparison operators
 	BOOL operator<(const MTCaltJmpNode <T> &aSrc) const
@@ -175,13 +175,14 @@ public:
 			{
 				char buffer[400];
 
-				sprintf(buffer, "I had read %d objects from the readRAOF, but I only had %d objects in the rbt.", readRAOF.getCount(), rbt.getCount()); 
+				sprintf(buffer, "I had read %ld objects from the readRAOF, but I only had %ld objects in the rbt.", readRAOF.getCount(), rbt.getCount()); 
 				errorMsg(EMT_WARNING, buffer, "MTCcreateAltJmpRAOF::doIt()");
 			}
 			
 			rbt.forEach(dump);
+			return TRUE;
 		}
 
 };
 
-#endif __ROAFALT_H_
+#endif // __ROAFALT_H_

@@ -70,4 +70,4 @@ public:
 	bitCountType getBufferSize() const { return bufferSize; };
 };
 
-#endif  __BITSTRM_H_
+#endif // __BITSTRM_H_

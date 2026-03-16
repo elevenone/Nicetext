@@ -104,5 +104,4 @@ public:
 	friend ostream & operator<<(ostream &s, MTCgrammar &);
 };
 
-#endif  __GRAMMAR_H_
-
+#endif // __GRAMMAR_H_

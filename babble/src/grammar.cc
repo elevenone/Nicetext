@@ -302,7 +302,8 @@ ostream & operator<<(ostream &s, MTCgrammar &g)
 
 	g.rules.forEach(dumpRule);
 
-	cout << "// END OF GRAMMAR RULE DUMP" << endl;
+	s << "// END OF GRAMMAR RULE DUMP" << endl;
+	return s;
 }
 
 // dump a rule to the dumpRuleTarget (ostream)
@@ -403,4 +404,3 @@ MTCsentenceModel * MTCgrammar::makeModel(int maxSize, BOOL checkIfReady)
 
 	return &model;
 }
-

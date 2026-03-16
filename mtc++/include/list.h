@@ -156,6 +156,7 @@ inline int MTClist <T>::add(const T &aT)
 
 	last->next=createNewNode(aT);
 	last=last->next;
+	return 0;
 }
 
 // find aNode in the list 
@@ -272,4 +273,4 @@ inline void MTClist <T>::forEach(void (*doIt)(T *))
 	}
 }
 
-#endif __LIST_H_
+#endif // __LIST_H_

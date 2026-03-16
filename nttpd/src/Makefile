@@ -6,7 +6,7 @@
 LIBDEPEND=../../babble/lib/libbabb.a ../../gendict/lib/libgndct.a ../../mtc++/lib/libmtc++.a 
 
 CFLAGS+=$(CDEBUG) -I../include -I../../gendict/include -I../../mtc++/include 
-LFLAGS= -L../lib -L../../babble/lib -L../../mtc++/lib -L../../gendict/lib -lbabb -lgndct -lmtc++ 
+LFLAGS= -L../../babble/lib -L../../mtc++/lib -L../../gendict/lib -lbabb -lgndct -lmtc++ 
 
 SRCS=nttpd.cc
 CC=c++

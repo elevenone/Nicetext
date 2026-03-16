@@ -8,7 +8,7 @@ LIBOBJS=
 LIBDEPEND=$(LIBTARGET) ../../mtc++/lib/libmtc++.a
 
 CFLAGS+=$(DEBUG) -I../include -I../../mtc++/include 
-LFLAGS= -L../../mtc++/lib -L../lib 
+LFLAGS= -L../../mtc++/lib 
 
 SRCS=impkimmo.cc impwbstr.cc impmsc.cc printint.cc
 CC=c++

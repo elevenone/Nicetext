@@ -405,7 +405,7 @@ int MTCinitFile::deleteSection(char *aSection)
 
 					// Note: this line is what "deletes" the key
 
-	if (tmpSection!=NULL)
+	if (tmpSection[0]!='\0')
 	{
 		copyRest(tmpSection);   // copy the rest of the keys and sections
 	}

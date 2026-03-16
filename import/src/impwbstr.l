@@ -80,7 +80,7 @@ static char rcsid []  = "@(#)$Id: impwbstr.l,v 1.3 1997/03/05 17:53:41 markc Exp
 
 char word[MAX_WORDLEN+1];
 char base[MAX_WORDLEN+1];
-void defWord(char *);
+void defWord(const char *);
 void setWord(char *);
 
 
@@ -88,7 +88,7 @@ void setWord(char *);
 \[((.*|((.*\n){1,5})).*)\]		/* fprintf(yyout, "I JUST ATE :%s:\n", yytext); */
 \\((.*|((.*\n){1,5})).*)\\		/* fprintf(yyout, "I JUST ATE :%s:\n", yytext); */
 .|\n		/* fprintf(yyout, "%s", yytext) */;
-#endif NOTNOT
+#endif // NOTNOT
 %}
 %%
 Word:" "(.*)				RETURN (NEW_WORD);
@@ -245,7 +245,7 @@ int main()
 			}
 			break;
 		default:
-			fprintf(yyout, "ERROR\n", yytext);
+			fprintf(yyout, "ERROR: %s\n", yytext);
 			break;
 		}
 	}
@@ -275,10 +275,10 @@ void setWord(char *rawWord)
 		}
 	}
 
-	word[j]=NULL;
+	word[j]='\0';
 }
 
-void defWord(char *defStr)
+void defWord(const char *defStr)
 {
 	DBG(fprintf(yyout, "\t");)
 

@@ -68,4 +68,4 @@ inline void MTCbalancedBSTfromRAOF<T>::readRange(long low, long high)
 	}
 }
 
-#endif __BALANCE_H_
+#endif // __BALANCE_H_
