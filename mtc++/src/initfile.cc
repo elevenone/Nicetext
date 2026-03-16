@@ -814,7 +814,7 @@ int MTCinitFile::copyRest(char *aSection, char *aKey)
 		{
 			inFilePtr->seekg(0);
 			(void)findKey(aKey, aSection);
-			sPos=keySPos+(streampos)strlen(key)+(streampos)strlen(value)+3;
+			sPos = keySPos + static_cast<streamoff>(strlen(key) + strlen(value) + 3);
 		}
 
 		// copy all bytes past that point!

@@ -11,8 +11,10 @@ CFLAGS+=$(DEBUG) -I../include -I../../mtc++/include
 LFLAGS= -L../../mtc++/lib -L../lib 
 
 SRCS=impkimmo.cc impwbstr.cc impmsc.cc printint.cc
-CC=g++
+CC=c++
 LEX=flex -f 
+
+CFLAGS+=-std=gnu++98
 
 .cc.o:
 	$(CC) $(CFLAGS) -c -o $@ $<

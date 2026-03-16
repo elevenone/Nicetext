@@ -11,9 +11,11 @@ CFLAGS+=$(CDEBUG) -I../include -I../../gendict/include -I../../mtc++/include
 LFLAGS= -L../lib -L../../mtc++/lib -L../../gendict/lib -lbabb -lgndct -lmtc++ 
 
 SRCS=bits2txt.cc txt2bits.cc nicetext.cc scramble.cc expgram.cc gramtest.cc bitcp.cc bitstrm.cc bitinput.cc bitoutput.cc grammar.cc rule.cc lexgram.cc yaccgram.cc
-CC=g++
+CC=c++
 #LEX=lex
 YACC=yacc -d 
+
+CFLAGS+=-std=gnu++98
 
 .cc.o:
 	$(CC) $(CFLAGS) -c -o $@ $<
@@ -72,4 +74,3 @@ yaccgram.cc: yaccgram.y
 grammar.o: y.tab.h
 
 # makedepend from here on down...
-

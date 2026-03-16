@@ -1664,7 +1664,7 @@ int main()
 #line 45 "impmsc.l"
 
 
-main()
+int main()
 {
 	cerr << "reading msc format from stdin, writing dct format to stdout..." << endl;
 

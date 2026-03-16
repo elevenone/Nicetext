@@ -9,9 +9,11 @@ CFLAGS+=$(CDEBUG) -I../include -I../../gendict/include -I../../mtc++/include
 LFLAGS= -L../lib -L../../babble/lib -L../../mtc++/lib -L../../gendict/lib -lbabb -lgndct -lmtc++ 
 
 SRCS=nttpd.cc
-CC=g++
+CC=c++
 LEX=flex -f -p $(LDEBUG)  
 YACC=yacc -d -v $(YDEBUG) 
+
+CFLAGS+=-std=gnu++98
 
 .cc.o:
 	$(CC) $(CFLAGS) -c -o $@ $<

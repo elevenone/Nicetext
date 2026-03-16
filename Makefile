@@ -2,30 +2,30 @@
 # NiceText
 
 all: 
-	cd rinfo; gmake
-	cd mtc++/src; gmake 
-	cd gendict/src; gmake 
-	cd babble/src; gmake 
-#	cd import/src; gmake 
-	cd nttpd/src; gmake
+	$(MAKE) -C rinfo
+	$(MAKE) -C mtc++/src
+	$(MAKE) -C gendict/src
+	$(MAKE) -C babble/src
+#	$(MAKE) -C import/src
+	$(MAKE) -C nttpd/src
 
 database:
-	cd examples/database; gmake
+	$(MAKE) -C examples/database
 
 depend: 
-	cd mtc++/src; gmake depend 
-	cd gendict/src; gmake depend 
-	cd babble/src; gmake depend 
-	cd import/src; gmake depend 
-	cd nttpd/src; gmake depend
+	$(MAKE) -C mtc++/src depend
+	$(MAKE) -C gendict/src depend
+	$(MAKE) -C babble/src depend
+	$(MAKE) -C import/src depend
+	$(MAKE) -C nttpd/src depend
 
 clean:
-	cd mtc++/src; gmake clean 
-	cd gendict/src; gmake clean 
-	cd babble/src; gmake clean 
-	cd nttpd/src; gmake clean
-	cd import/src; gmake clean 
-	cd rinfo; gmake clean 
+	$(MAKE) -C mtc++/src clean
+	$(MAKE) -C gendict/src clean
+	$(MAKE) -C babble/src clean
+	$(MAKE) -C nttpd/src clean
+	$(MAKE) -C import/src clean
+	$(MAKE) -C rinfo clean
 	rm -f bin/qstart-nttpd
 
 backup: clean
@@ -35,7 +35,7 @@ snapshot: RINFO
 	rinfo/rinfo -s
 
 RINFO:  
-	cd rinfo; gmake 
+	$(MAKE) -C rinfo
 
 tarball: clean
 	rm -f ../nicetext-0.9.tar ../nicetext-0.9.tar.gz
@@ -45,12 +45,12 @@ tarball: clean
 	cd ..; gzip --best nicetext-0.9.tar
 
 install: quickstart
-	cd rinfo; gmake install
-	cd mtc++/src; gmake install 
-	cd gendict/src; gmake install 
-	cd babble/src; gmake install 
-	cd import/src; gmake install 
-	cd nttpd/src; gmake install
+	$(MAKE) -C rinfo install
+	$(MAKE) -C mtc++/src install
+	$(MAKE) -C gendict/src install
+	$(MAKE) -C babble/src install
+	$(MAKE) -C import/src install
+	$(MAKE) -C nttpd/src install
 
 quickstart:
 	@echo "#!/bin/sh" > bin/qstart-nttpd

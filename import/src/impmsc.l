@@ -44,7 +44,7 @@ void toLower(char *);
 .|\n		;
 %%
 
-main()
+int main()
 {
 	cerr << "reading msc format from stdin, writing dct format to stdout..." << endl;
 

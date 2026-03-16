@@ -10,8 +10,10 @@ LIBDEPEND=$(LIBTARGET) ../../mtc++/lib/libmtc++.a
 CFLAGS+=$(CDEBUG) -I../include -I../../mtc++/include
 LFLAGS= -L../../mtc++/lib -L../lib -lmtc++ -lgndct   
 
-CC=g++
+CC=c++
 #LEX=lex -fp
+
+CFLAGS+=-std=gnu++98
 
 SRCS=dct2mstr.cc rawdict.cc genmodel.cc lexword.cc dictrec.cc typerec.cc sentmdl.cc sentnode.cc txt2dct.cc listword.cc sortdct.cc
 
@@ -64,4 +66,3 @@ lexword.cc: lexword.l
 	$(LEX) lexword.l 
 	sed s/yy/zz/g < lex.yy.c | sed s/YY/ZZ/g > lexword.cc
 	rm -f lex.yy.c
-

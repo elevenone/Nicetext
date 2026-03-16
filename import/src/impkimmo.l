@@ -171,7 +171,7 @@ MTCstring clitic;
 MTCstring cform_gen_plus;
 BOOL defined=FALSE;
 
-main()
+int main()
 {
 	cerr << "reading kimmo output from stdin, writing dct format to stdout..." << endl; 
 

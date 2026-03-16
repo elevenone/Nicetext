@@ -121,7 +121,7 @@ Word:" "(.*)				RETURN (NEW_WORD);
 .|\n					SKIP;
 %%
 
-main()
+int main()
 {
 	cerr << "reading webster data from stdin, writing dct format to stdout..." << endl;
 

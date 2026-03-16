@@ -7,8 +7,8 @@ LIBTARGET=../lib/libmtc++.a
 LIBOBJS= mstring.o stdermsg.o initfile.o
 SRCS=mstring.cc stdermsg.cc initfile.cc raofmake.cc raofmalt.cc raofread.cc bsttest.cc rbttest.cc listtest.cc inittest.cc numsize.cc
 
-CC=g++
-CFLAGS+=$(CDEBUG) 
+CC=c++
+CFLAGS+=-std=gnu++98 $(CDEBUG) -I../include
 LFLAGS= -L../lib -lmtc++
 
 .cc.o: 
@@ -62,4 +62,3 @@ inittest: inittest.o $(LIBTARGET)
 
 numsize: numsize.o $(LIBTARGET)
 	g++  $(CFLAGS) -o numsize numsize.o $(LFLAGS)
-

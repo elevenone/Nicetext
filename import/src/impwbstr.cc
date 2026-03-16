@@ -6206,7 +6206,7 @@ int main()
 #line 122 "impwbstr.l"
 
 
-main()
+int main()
 {
 	cerr << "reading webster data from stdin, writing dct format to stdout..." << endl;
 

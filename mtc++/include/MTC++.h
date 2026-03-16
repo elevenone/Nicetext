@@ -27,8 +27,8 @@
 static char rcsid__MTCPP_H_ []  = "@(#)$Id: MTC++.h,v 1.4 1997/03/05 15:58:28 markc Exp $";
 
 #include <stdio.h>
-#include <iostream.h>
-#include <fstream.h>
+#include "iostream.h"
+#include "fstream.h"
 #include <string.h>
 #include <unistd.h>
 #include <ctype.h>
@@ -37,19 +37,19 @@ static char rcsid__MTCPP_H_ []  = "@(#)$Id: MTC++.h,v 1.4 1997/03/05 15:58:28 ma
 
 #ifndef BOOL
 #define BOOL short
-#endif  BOOL
+#endif
 
 #ifndef TRUE
 #define TRUE 1
-#endif  TRUE
+#endif
 
 #ifndef FALSE
 #define FALSE 0
-#endif  FALSE
+#endif
 
 #ifndef MAXPATH
 #define MAXPATH 80
-#endif  MAXPATH
+#endif
 
 /*
  * #include "../include/mstring.h"
@@ -57,4 +57,4 @@ static char rcsid__MTCPP_H_ []  = "@(#)$Id: MTC++.h,v 1.4 1997/03/05 15:58:28 ma
  * #include "../include/initfile.h"
  */
 
-#endif __MTCPP_H_
+#endif
