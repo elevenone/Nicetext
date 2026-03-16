@@ -3,9 +3,9 @@
 set -eu
 
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-INPUT_FILE="$SCRIPT_DIR/_message.txt"
-OUTPUT_FILE="$SCRIPT_DIR/_message.nicetext.txt"
-RESTORED_FILE="$SCRIPT_DIR/_message.restored.txt"
+INPUT_FILE="$SCRIPT_DIR/_tests/message.txt"
+OUTPUT_FILE="$SCRIPT_DIR/_tests/message.nicetext.txt"
+RESTORED_FILE="$SCRIPT_DIR/_tests/message.restored.txt"
 
 # Default to the bundled JFK example database. Pass a different prefix
 # as the first argument if you want another style/dictionary set.
