@@ -1,1 +1,56 @@
 _pkd/*
+.DS_Store
+
+# Top-level install output
+/bin/
+
+# Built libraries
+/babble/lib/
+/gendict/lib/
+/mtc++/lib/
+
+# Module-local build outputs
+/babble/src/*.o
+/babble/src/bitcp
+/babble/src/expgram
+/babble/src/gramtest
+/babble/src/nicetext
+/babble/src/scramble
+
+/gendict/src/*.o
+/gendict/src/dct2mstr
+/gendict/src/genmodel
+/gendict/src/listword
+/gendict/src/sortdct
+/gendict/src/txt2dct
+
+/import/src/*.o
+/import/src/impkimmo
+/import/src/impmsc
+/import/src/impwbstr
+/import/src/printint
+
+/mtc++/src/*.o
+/mtc++/src/bsttest
+/mtc++/src/inittest
+/mtc++/src/listtest
+/mtc++/src/numsize
+/mtc++/src/raofmake
+/mtc++/src/raofmalt
+/mtc++/src/raofread
+/mtc++/src/rbttest
+
+# Installed test/sample binaries under source trees
+/mtc++/bin/bsttest
+/mtc++/bin/inittest
+/mtc++/bin/listtest
+/mtc++/bin/numsize
+/mtc++/bin/raofmake
+/mtc++/bin/raofmalt
+/mtc++/bin/raofread
+/mtc++/bin/rbttest
+
+/nttpd/src/*.o
+/nttpd/src/nttpd
+
+/rinfo/rinfo
