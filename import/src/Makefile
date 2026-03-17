@@ -25,12 +25,12 @@ impwbstr.o: CXXFLAGS += $(GENERATED_CXXFLAGS)
 all: $(LIBTARGET) impkimmo impwbstr impmsc printint  
 
 install: all
-	@$(MKDIR_P) ../../bin
-	$(INSTALL_PROGRAM) impkimmo ../../bin/impkimmo
-	$(INSTALL_PROGRAM) impwbstr ../../bin/impwbstr
-	$(INSTALL_PROGRAM) impmsc ../../bin/impmsc
-	$(INSTALL_PROGRAM) printint ../../bin/printint
-	-$(STRIP) ../../bin/impkimmo ../../bin/impwbstr ../../bin/impmsc ../../bin/printint
+	@$(MKDIR_P) $(TOP_BINDIR)
+	$(INSTALL_PROGRAM) impkimmo $(TOP_BINDIR)/impkimmo
+	$(INSTALL_PROGRAM) impwbstr $(TOP_BINDIR)/impwbstr
+	$(INSTALL_PROGRAM) impmsc $(TOP_BINDIR)/impmsc
+	$(INSTALL_PROGRAM) printint $(TOP_BINDIR)/printint
+	-$(STRIP) $(TOP_BINDIR)/impkimmo $(TOP_BINDIR)/impwbstr $(TOP_BINDIR)/impmsc $(TOP_BINDIR)/printint
 
 depend:
 	$(MAKEDEPEND) -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)

@@ -9,11 +9,9 @@ include ../config.mk
 rinfo: rinfo.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -DUNIX=1 rinfo.c $(LDFLAGS) -o rinfo $(LDLIBS)
 
-install: rinfo ../bin
-	$(INSTALL_PROGRAM) rinfo ../bin/rinfo
+install: rinfo
+	@$(MKDIR_P) $(TOP_BINDIR)
+	$(INSTALL_PROGRAM) rinfo $(TOP_BINDIR)/rinfo
 	
 clean:
 	rm -f rinfo ../bin/rinfo
-
-../bin:
-	$(MKDIR_P) $@

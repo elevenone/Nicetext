@@ -17,6 +17,16 @@ INSTALL_DATA ?= $(INSTALL) -m 644
 STRIP ?= strip
 MAKEDEPEND ?= makedepend
 CURDIR_ABS ?= $(shell pwd)
+ROOT_DIR ?= $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
+
+ifeq ($(strip $(INSTALL_SUBDIR)),)
+INSTALL_ROOT ?= $(ROOT_DIR)
+else
+INSTALL_ROOT ?= $(ROOT_DIR)/$(INSTALL_SUBDIR)
+endif
+
+TOP_BINDIR ?= $(INSTALL_ROOT)/bin
+MTC_BINDIR ?= $(INSTALL_ROOT)/mtc++/bin
 
 UNAME_S := $(shell uname -s 2>/dev/null || echo Unknown)
 CXX_VERSION_LINE := $(shell $(CXX) --version 2>/dev/null | head -n 1)

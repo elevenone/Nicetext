@@ -33,13 +33,13 @@ clean:
 	rm -f ../bin/nicetext ../bin/scramble ../bin/expgram ../bin/gramtest ../bin/bitcp
 
 install: all
-	@$(MKDIR_P) ../../bin
-	$(INSTALL_PROGRAM) nicetext ../../bin/nicetext
-	$(INSTALL_PROGRAM) scramble ../../bin/scramble
-	$(INSTALL_PROGRAM) gramtest ../../bin/gramtest
-	$(INSTALL_PROGRAM) expgram ../../bin/expgram
-	$(INSTALL_PROGRAM) bitcp ../../bin/bitcp
-	-$(STRIP) ../../bin/nicetext ../../bin/scramble ../../bin/gramtest ../../bin/expgram ../../bin/bitcp
+	@$(MKDIR_P) $(TOP_BINDIR)
+	$(INSTALL_PROGRAM) nicetext $(TOP_BINDIR)/nicetext
+	$(INSTALL_PROGRAM) scramble $(TOP_BINDIR)/scramble
+	$(INSTALL_PROGRAM) gramtest $(TOP_BINDIR)/gramtest
+	$(INSTALL_PROGRAM) expgram $(TOP_BINDIR)/expgram
+	$(INSTALL_PROGRAM) bitcp $(TOP_BINDIR)/bitcp
+	-$(STRIP) $(TOP_BINDIR)/nicetext $(TOP_BINDIR)/scramble $(TOP_BINDIR)/gramtest $(TOP_BINDIR)/expgram $(TOP_BINDIR)/bitcp
 
 $(LIBTARGET): ../lib $(LIBOBJS)
 	$(AR) -rc $(LIBTARGET) $(LIBOBJS)

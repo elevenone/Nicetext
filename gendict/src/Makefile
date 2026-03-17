@@ -23,13 +23,13 @@ lexword.o: CXXFLAGS += $(GENERATED_CXXFLAGS)
 all: $(LIBTARGET) dct2mstr genmodel txt2dct listword sortdct 
 
 install: all
-	@$(MKDIR_P) ../../bin
-	$(INSTALL_PROGRAM) dct2mstr ../../bin/dct2mstr
-	$(INSTALL_PROGRAM) genmodel ../../bin/genmodel
-	$(INSTALL_PROGRAM) listword ../../bin/listword
-	$(INSTALL_PROGRAM) sortdct ../../bin/sortdct
-	$(INSTALL_PROGRAM) txt2dct ../../bin/txt2dct
-	-$(STRIP) ../../bin/dct2mstr ../../bin/genmodel ../../bin/listword ../../bin/sortdct ../../bin/txt2dct
+	@$(MKDIR_P) $(TOP_BINDIR)
+	$(INSTALL_PROGRAM) dct2mstr $(TOP_BINDIR)/dct2mstr
+	$(INSTALL_PROGRAM) genmodel $(TOP_BINDIR)/genmodel
+	$(INSTALL_PROGRAM) listword $(TOP_BINDIR)/listword
+	$(INSTALL_PROGRAM) sortdct $(TOP_BINDIR)/sortdct
+	$(INSTALL_PROGRAM) txt2dct $(TOP_BINDIR)/txt2dct
+	-$(STRIP) $(TOP_BINDIR)/dct2mstr $(TOP_BINDIR)/genmodel $(TOP_BINDIR)/listword $(TOP_BINDIR)/sortdct $(TOP_BINDIR)/txt2dct
 
 
 depend:

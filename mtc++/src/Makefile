@@ -19,16 +19,16 @@ LDLIBS+=-L../lib -lmtc++
 all: $(LIBTARGET) raofmake raofmalt raofread bsttest rbttest listtest inittest numsize
 
 install: all
-	@$(MKDIR_P) ../bin
-	$(INSTALL_PROGRAM) raofmake ../bin/raofmake
-	$(INSTALL_PROGRAM) raofmalt ../bin/raofmalt
-	$(INSTALL_PROGRAM) raofread ../bin/raofread
-	$(INSTALL_PROGRAM) listtest ../bin/listtest
-	$(INSTALL_PROGRAM) bsttest ../bin/bsttest
-	$(INSTALL_PROGRAM) rbttest ../bin/rbttest
-	$(INSTALL_PROGRAM) inittest ../bin/inittest
-	$(INSTALL_PROGRAM) numsize ../bin/numsize
-	-$(STRIP) ../bin/raofmake ../bin/raofmalt ../bin/raofread ../bin/listtest ../bin/bsttest ../bin/rbttest ../bin/inittest ../bin/numsize
+	@$(MKDIR_P) $(MTC_BINDIR)
+	$(INSTALL_PROGRAM) raofmake $(MTC_BINDIR)/raofmake
+	$(INSTALL_PROGRAM) raofmalt $(MTC_BINDIR)/raofmalt
+	$(INSTALL_PROGRAM) raofread $(MTC_BINDIR)/raofread
+	$(INSTALL_PROGRAM) listtest $(MTC_BINDIR)/listtest
+	$(INSTALL_PROGRAM) bsttest $(MTC_BINDIR)/bsttest
+	$(INSTALL_PROGRAM) rbttest $(MTC_BINDIR)/rbttest
+	$(INSTALL_PROGRAM) inittest $(MTC_BINDIR)/inittest
+	$(INSTALL_PROGRAM) numsize $(MTC_BINDIR)/numsize
+	-$(STRIP) $(MTC_BINDIR)/raofmake $(MTC_BINDIR)/raofmalt $(MTC_BINDIR)/raofread $(MTC_BINDIR)/listtest $(MTC_BINDIR)/bsttest $(MTC_BINDIR)/rbttest $(MTC_BINDIR)/inittest $(MTC_BINDIR)/numsize
 
 depend:
 	$(MAKEDEPEND) -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
