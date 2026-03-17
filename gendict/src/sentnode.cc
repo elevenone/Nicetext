@@ -16,8 +16,8 @@
 
 static char rcsid []  = "@(#)$Id: sentnode.cc,v 1.2 1996/01/13 09:47:22 markc Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdlib.h>
 #include "../../mtc++/include/MTC++.h"
 #include "../../mtc++/include/mstring.h"

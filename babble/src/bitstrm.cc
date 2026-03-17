@@ -22,8 +22,8 @@
 
 static char rcsid []  = "@(#)$Id: bitstrm.cc,v 1.4 1997/03/05 17:49:59 markc Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -111,4 +111,3 @@ void MTCbitStream::incBufferSize(bitCountType delta)
 		errorMsg(EMT_WARNING, "I tried to incBufferSize() more than I could.  I will set bufferSize to maximum.", "MTCbitStream::incBufferSize()");
 	}
 }
-

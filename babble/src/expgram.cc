@@ -52,8 +52,8 @@
 
 static char rcsid []  = "@(#)$Id: expgram.cc,v 1.12 1998/08/17 20:24:28 markc Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../mtc++/include/MTC++.h"
@@ -368,4 +368,3 @@ long countMerges(const MTCstring &code)
 	#endif // DEBUG
 	return retVal;
 }
-

@@ -16,8 +16,8 @@
 
 static char rcsid []  = "@(#)$Id: rawdict.cc,v 1.2 1995/11/08 19:32:11 chapman Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include "../../mtc++/include/MTC++.h"
 #include "../../mtc++/include/mstring.h"
 #include "../../mtc++/include/errormsg.h"

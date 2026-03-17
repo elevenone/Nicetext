@@ -28,8 +28,8 @@
 
 static char rcsid []  = "@(#)$Id: bitinput.cc,v 1.6 1997/03/05 17:49:59 markc Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>

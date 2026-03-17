@@ -49,8 +49,8 @@
 
 static char rcsid []  = "@(#)$Id: scramble.cc,v 1.13 1998/08/18 18:10:17 root Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../mtc++/include/MTC++.h"

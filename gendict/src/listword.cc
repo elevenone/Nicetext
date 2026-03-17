@@ -62,8 +62,8 @@
 static char rcsid []  = "@(#)$Id: listword.cc,v 1.17 1998/08/18 15:52:27 root Exp $";
 
 #include <stdio.h>
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdlib.h>
 #include "../../mtc++/include/MTC++.h"
 #include "../../mtc++/include/errormsg.h"

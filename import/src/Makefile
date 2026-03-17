@@ -3,21 +3,20 @@
 # Mark T. Chapman
 # 
 
+include ../../config.mk
+
 LIBTARGET=
 LIBOBJS=
 LIBDEPEND=$(LIBTARGET) ../../mtc++/lib/libmtc++.a
 
-CFLAGS+=$(DEBUG) -I../include -I../../mtc++/include 
-LFLAGS= -L../../mtc++/lib 
+CPPFLAGS+=-I../include -I../../mtc++/include 
+CXXFLAGS+=$(DEBUG)
+LDLIBS+=-L../../mtc++/lib 
 
 SRCS=impkimmo.cc impwbstr.cc impmsc.cc printint.cc
-CC=c++
-LEX=flex -f 
-
-CFLAGS+=-std=gnu++98
 
 .cc.o:
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 all: $(LIBTARGET) impkimmo impwbstr impmsc printint  
 
@@ -29,7 +28,7 @@ install: all
 	strip ../../bin/impkimmo ../../bin/impwbstr ../../bin/impmsc ../../bin/printint
 
 depend:
-	makedepend -- $(CFLAGS) -- $(SRCS)
+	makedepend -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
 
 clean:
 	rm -f *.o impkimmo impwbstr impmsc printint $(LIBTARGET) 
@@ -39,7 +38,7 @@ clean:
 	rm -f ../bin/printint ../../bin/printint
 
 impkimmo: impkimmo.o $(LIBDEPEND)
-	g++  $(CFLAGS) -o impkimmo impkimmo.o -ll -lmtc++ $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o impkimmo impkimmo.o -ll -lmtc++ $(LDLIBS)
 
 impkimmo.cc: impkimmo.l impmsc.cc  
 	rm -f lex.yy.c
@@ -47,7 +46,7 @@ impkimmo.cc: impkimmo.l impmsc.cc
 	mv lex.yy.c impkimmo.cc
 
 impmsc: impmsc.o $(LIBDEPEND)
-	g++  $(CFLAGS) -o impmsc impmsc.o -ll $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o impmsc impmsc.o -ll $(LDLIBS)
 
 impmsc.cc: impmsc.l impwbstr.cc  
 	rm -f lex.yy.c
@@ -55,7 +54,7 @@ impmsc.cc: impmsc.l impwbstr.cc
 	mv lex.yy.c impmsc.cc
 	
 impwbstr: impwbstr.o $(LIBDEPEND)
-	g++  $(CFLAGS) -o impwbstr impwbstr.o -ll $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o impwbstr impwbstr.o -ll $(LDLIBS)
 
 impwbstr.cc: impwbstr.l 
 	rm -f lex.yy.c
@@ -63,6 +62,6 @@ impwbstr.cc: impwbstr.l
 	mv lex.yy.c impwbstr.cc
 
 printint: printint.o $(LIBDEPEND)
-	g++  $(CFLAGS) -o printint printint.o -ll $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o printint printint.o -ll $(LDLIBS)
 
 # DO NOT DELETE

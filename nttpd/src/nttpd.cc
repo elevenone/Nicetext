@@ -96,8 +96,8 @@
 #include <arpa/inet.h>
 #include <sys/time.h>
 #include <unistd.h>
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <strstream>
 #include <signal.h>
 #include "../../mtc++/include/MTC++.h"

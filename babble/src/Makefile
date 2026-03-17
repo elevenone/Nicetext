@@ -3,27 +3,25 @@
 # Mark T. Chapman
 # 
 
+include ../../config.mk
+
 LIBTARGET=../lib/libbabb.a
 LIBOBJS= bits2txt.o txt2bits.o bitstrm.o bitinput.o bitoutput.o grammar.o rule.o lexgram.o yaccgram.o
 LIBDEPEND=../../gendict/lib/libgndct.a ../../mtc++/lib/libmtc++.a $(LIBTARGET) 
 
-CFLAGS+=$(CDEBUG) -I../include -I../../gendict/include -I../../mtc++/include 
-LFLAGS= -L../lib -L../../mtc++/lib -L../../gendict/lib -lbabb -lgndct -lmtc++ 
+CPPFLAGS+=-I../include -I../../gendict/include -I../../mtc++/include 
+CXXFLAGS+=$(CDEBUG)
+LDLIBS+=-L../lib -L../../mtc++/lib -L../../gendict/lib -lbabb -lgndct -lmtc++ 
 
 SRCS=bits2txt.cc txt2bits.cc nicetext.cc scramble.cc expgram.cc gramtest.cc bitcp.cc bitstrm.cc bitinput.cc bitoutput.cc grammar.cc rule.cc lexgram.cc yaccgram.cc
-CC=c++
-#LEX=lex
-YACC=yacc -d 
-
-CFLAGS+=-std=gnu++98
 
 .cc.o:
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 all: $(LIBTARGET) nicetext scramble expgram gramtest bitcp
 
 depend:
-	makedepend -- $(CFLAGS) -- $(SRCS)
+	makedepend -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
 
 clean:
 	rm -f *.o *.core $(LIBTARGET) nicetext scramble expgram gramtest bitcp 
@@ -40,23 +38,23 @@ install: all
 	strip ../../bin/nicetext ../../bin/scramble ../../bin/gramtest ../../bin/expgram ../../bin/bitcp
 
 $(LIBTARGET): $(LIBOBJS)
-	ar -rc $(LIBTARGET) $(LIBOBJS)
-	ranlib $(LIBTARGET)
+	$(AR) -rc $(LIBTARGET) $(LIBOBJS)
+	$(RANLIB) $(LIBTARGET)
 
 nicetext: nicetext.o $(LIBDEPEND)
-	g++  $(CFLAGS) -o nicetext nicetext.o $(LFLAGS) 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o nicetext nicetext.o $(LDLIBS) 
 
 scramble: scramble.o txt2bits.o $(LIBDEPEND)
-	g++  $(CFLAGS) -o scramble scramble.o txt2bits.o -lgndct $(LFLAGS) 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o scramble scramble.o txt2bits.o -lgndct $(LDLIBS) 
 
 bitcp: bitcp.o $(LIBDEPEND)
-	g++  $(CFLAGS) -o bitcp bitcp.o $(LFLAGS) 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o bitcp bitcp.o $(LDLIBS) 
 
 gramtest: gramtest.o $(LIBDEPEND)
-	g++ $(CFLAGS) -o gramtest gramtest.o $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o gramtest gramtest.o $(LDLIBS)
 
 expgram: expgram.o $(LIBDEPEND)
-	g++ $(CFLAGS) -o expgram expgram.o $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o expgram expgram.o $(LDLIBS)
 
 lexgram.cc: yaccgram.cc lexgram.l 
 	rm -f lex.yy.c

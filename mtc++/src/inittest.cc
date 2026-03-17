@@ -28,8 +28,8 @@
 
 static char rcsid []  = "@(#)$Id: inittest.cc,v 1.6 1997/03/05 15:51:25 markc Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/MTC++.h"

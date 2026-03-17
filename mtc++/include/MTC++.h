@@ -26,14 +26,27 @@
 
 static char rcsid__MTCPP_H_ []  = "@(#)$Id: MTC++.h,v 1.4 1997/03/05 15:58:28 markc Exp $";
 
-#include <stdio.h>
-#include "iostream.h"
-#include "fstream.h"
-#include <string.h>
+#include <cctype>
+#include <cstdio>
+#include <cstring>
+#include <fstream>
+#include <iostream>
 #include <unistd.h>
-#include <ctype.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+
+using std::cerr;
+using std::cin;
+using std::cout;
+using std::endl;
+using std::fstream;
+using std::ifstream;
+using std::ios;
+using std::istream;
+using std::ofstream;
+using std::ostream;
+using std::streamoff;
+using std::streampos;
 
 #ifndef BOOL
 #define BOOL short

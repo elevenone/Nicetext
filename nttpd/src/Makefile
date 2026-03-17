@@ -3,25 +3,25 @@
 # Mark T. Chapman
 # 
 
+include ../../config.mk
+
 LIBDEPEND=../../babble/lib/libbabb.a ../../gendict/lib/libgndct.a ../../mtc++/lib/libmtc++.a 
 
-CFLAGS+=$(CDEBUG) -I../include -I../../gendict/include -I../../mtc++/include 
-LFLAGS= -L../../babble/lib -L../../mtc++/lib -L../../gendict/lib -lbabb -lgndct -lmtc++ 
+CPPFLAGS+=-I../include -I../../gendict/include -I../../mtc++/include 
+CXXFLAGS+=$(CDEBUG)
+LDLIBS+=-L../../babble/lib -L../../mtc++/lib -L../../gendict/lib -lbabb -lgndct -lmtc++ 
 
 SRCS=nttpd.cc
-CC=c++
 LEX=flex -f -p $(LDEBUG)  
 YACC=yacc -d -v $(YDEBUG) 
 
-CFLAGS+=-std=gnu++98
-
 .cc.o:
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 all: nttpd
 
 depend:
-	makedepend -- $(CFLAGS) -- $(SRCS)
+	makedepend -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
 
 clean:
 	rm -f *.o *.core $(LIBTARGET) nttpd 
@@ -32,6 +32,6 @@ install: all
 	strip ../../bin/nttpd
 
 nttpd: nttpd.o $(LIBDEPEND)
-	g++  $(CFLAGS) -o nttpd nttpd.o $(LFLAGS) 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o nttpd nttpd.o $(LDLIBS) 
 
 # DO NOT DELETE

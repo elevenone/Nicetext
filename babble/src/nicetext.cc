@@ -91,8 +91,8 @@
 
 static char rcsid []  = "@(#)$Id: nicetext.cc,v 1.26 1998/08/18 21:34:14 markc Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>

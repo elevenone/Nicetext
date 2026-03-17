@@ -31,8 +31,8 @@
 
 static char rcsid []  = "@(#)$Id: gramtest.cc,v 1.7 1997/04/22 16:35:48 markc Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>

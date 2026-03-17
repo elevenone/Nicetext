@@ -1,7 +1,11 @@
 
 static char rcsid []  = "@(#)$Id: printint.cc,v 1.3 1997/03/05 17:53:41 markc Exp $";
 
-#include <iostream.h>
+#include <iostream>
+
+using std::cerr;
+using std::cout;
+using std::endl;
 
 int main()
 {

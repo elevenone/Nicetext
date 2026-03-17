@@ -24,10 +24,16 @@
 
 static char rcsid []  = "@(#)$Id: txt2dct.cc,v 1.4 1997/03/05 17:41:20 markc Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <string.h>
+
+using std::cerr;
+using std::cout;
+using std::endl;
+using std::ifstream;
+
 #define MAX_LINE_LENGTH	1024
 
 int processFile(const char *);

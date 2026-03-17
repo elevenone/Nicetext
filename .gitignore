@@ -1,4 +1,8 @@
 _pkd/*
+!_pkd/
+!_pkd/*.sh
+!_pkd/*.def
+!_pkd/_message.txt
 .DS_Store
 
 # Top-level install output

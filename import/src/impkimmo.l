@@ -80,7 +80,7 @@ static char rcsid []  = "@(#)$Id: impkimmo.l,v 1.10 1998/06/25 17:54:40 markc Ex
 
 #define END_OF_FILE     470
 
-#include <iostream.h>
+#include <iostream>
 #include "../../mtc++/include/MTC++.h"
 #include "../../mtc++/include/errormsg.h"
 #include "../../mtc++/include/mstring.h"

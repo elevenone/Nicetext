@@ -98,8 +98,8 @@
 
 static char rcsid []  = "@(#)$Id: genmodel.cc,v 1.27 1998/07/13 16:06:42 markc Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

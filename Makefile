@@ -1,6 +1,10 @@
 # Master Makefile
 # NiceText
 
+include config.mk
+
+.PHONY: all database depend clean backup snapshot tarball install quickstart RINFO
+
 all: 
 	$(MAKE) -C rinfo
 	$(MAKE) -C mtc++/src

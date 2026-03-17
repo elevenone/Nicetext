@@ -31,8 +31,8 @@
 
 static char rcsid []  = "@(#)$Id: txt2bits.cc,v 1.7 1998/02/19 19:31:25 markc Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../mtc++/include/MTC++.h"

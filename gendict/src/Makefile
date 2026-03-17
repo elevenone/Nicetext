@@ -3,22 +3,20 @@
 # Mark T. Chapman
 # 
 
+include ../../config.mk
+
 LIBTARGET=../lib/libgndct.a
 LIBOBJS= rawdict.o lexword.o dictrec.o typerec.o sentmdl.o sentnode.o 
 LIBDEPEND=$(LIBTARGET) ../../mtc++/lib/libmtc++.a
 
-CFLAGS+=$(CDEBUG) -I../include -I../../mtc++/include
-LFLAGS= -L../../mtc++/lib -L../lib -lmtc++ -lgndct   
-
-CC=c++
-#LEX=lex -fp
-
-CFLAGS+=-std=gnu++98
+CPPFLAGS+=-I../include -I../../mtc++/include
+CXXFLAGS+=$(CDEBUG)
+LDLIBS+=-L../../mtc++/lib -L../lib -lmtc++ -lgndct   
 
 SRCS=dct2mstr.cc rawdict.cc genmodel.cc lexword.cc dictrec.cc typerec.cc sentmdl.cc sentnode.cc txt2dct.cc listword.cc sortdct.cc
 
 .cc.o:
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 
 all: $(LIBTARGET) dct2mstr genmodel txt2dct listword sortdct 
@@ -33,7 +31,7 @@ install: all
 
 
 depend:
-	makedepend -- $(CFLAGS) -- $(SRCS)
+	makedepend -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
 
 clean:
 	rm -f *.o $(LIBTARGET) dct2mstr genmodel txt2dct listword sortdct txt2dct *.core 
@@ -43,23 +41,23 @@ master: dct2mstr
 	dct2mstr
 
 $(LIBTARGET): $(LIBOBJS)
-	ar -rc $(LIBTARGET) $(LIBOBJS)
-	ranlib $(LIBTARGET)
+	$(AR) -rc $(LIBTARGET) $(LIBOBJS)
+	$(RANLIB) $(LIBTARGET)
 
 dct2mstr: dct2mstr.o $(LIBDEPEND)
-	g++  $(CFLAGS) -o dct2mstr dct2mstr.o $(LFLAGS) 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o dct2mstr dct2mstr.o $(LDLIBS) 
 
 listword: listword.o $(LIBDEPEND)
-	g++  $(CFLAGS) -o listword listword.o $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o listword listword.o $(LDLIBS)
 
 sortdct: sortdct.o $(LIBDEPEND)
-	g++  $(CFLAGS) -o sortdct sortdct.o $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o sortdct sortdct.o $(LDLIBS)
 
 txt2dct: txt2dct.o $(LIBDEPEND)
-	g++  $(CFLAGS) -o txt2dct txt2dct.o $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o txt2dct txt2dct.o $(LDLIBS)
 
 genmodel: genmodel.o $(LIBDEPEND)
-	g++  $(CFLAGS) -o genmodel genmodel.o $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o genmodel genmodel.o $(LDLIBS)
 
 lexword.cc: lexword.l
 	rm -f lex.yy.c

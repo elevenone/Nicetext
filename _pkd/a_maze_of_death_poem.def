@@ -1,0 +1,38 @@
+// Poem-style grammar for the PKD "A Maze of Death" dictionary subset.
+// This stays invertible because it only uses dictionary-backed terminals
+// and ordinary punctuation commands.
+
+poem:
+		line_a line_b line_c line_d {n}
+	;
+
+line_a:
+		{Cap} AJ_AbsVerbal N_3sg+Sg end_a {.n} @5
+	|	{Cap} N_3sg+Sg V_Base end_a {.n} @3
+	;
+
+line_b:
+		{Cap} AJ_AbsVerbal {,} N_3sg+Sg end_b {.n} @5
+	|	{Cap} N_3sg+Sg AJ_AbsVerbal end_b {.n} @3
+	;
+
+line_c:
+		{Cap} N_3sg+Sg V_Base AJ_AbsVerbal end_a {.n} @4
+	|	{Cap} AJ_AbsVerbal N_3sg+Sg V_Base end_a {.n} @2
+	;
+
+line_d:
+		{Cap} AJ_AbsVerbal N_3sg+Sg end_b {.nn} @4
+	|	{Cap} N_3sg+Sg V_Base end_b {.nn} @2
+	;
+
+end_a:
+		V_IngFin,rhymel2_ih0ng,rhymel3_kih0ng,rhymel4_ey1kih0ng @4
+	|	V_IngFin,rhymel2_ih0ng,rhymel3_pih0ng,rhymel4_iy1pih0ng @4
+	;
+
+end_b:
+		V_IngFin,rhymel2_ih0ng,rhymel3_nih0ng,rhymel4_er1nih0ng @4
+	|	V_IngFin,rhymel2_ih0ng,rhymel3_dih0ng,rhymel4_iy1dih0ng,rhymel5_liy1dih0ng @2
+	|	V_IngFin,rhymel2_ih0ng,rhymel3_dih0ng,rhymel4_ndih0ng,rhymel5_eh1ndih0ng,rhymel6_seh1ndih0ng @2
+	;

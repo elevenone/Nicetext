@@ -27,9 +27,12 @@
 
 static char rcsid []  = "@(#)$Id: impmsc.l,v 1.3 1997/03/05 17:53:41 markc Exp $";
 
-#include <iostream.h>
+#include <iostream>
 #include <string.h>
 #include <ctype.h>
+
+using std::cerr;
+using std::endl;
 
 #define IMPMSC_WORD 	1	
 #define IMPMSC_TYPE	2

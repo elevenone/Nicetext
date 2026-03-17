@@ -27,8 +27,8 @@
 
 static char rcsid []  = "@(#)$Id: typerec.cc,v 1.5 1996/01/16 21:30:43 markc Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include "../../mtc++/include/MTC++.h"
 #include "../../mtc++/include/mstring.h"
 #include "../../mtc++/include/errormsg.h"

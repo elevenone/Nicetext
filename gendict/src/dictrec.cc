@@ -28,8 +28,8 @@
 
 static char rcsid []  = "@(#)$Id: dictrec.cc,v 1.4 1996/02/17 18:46:28 markc Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include "../../mtc++/include/MTC++.h"
 #include "../../mtc++/include/mstring.h"
 #include "../../mtc++/include/errormsg.h"

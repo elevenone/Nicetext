@@ -4946,7 +4946,11 @@ char *yytext;
 
 static char rcsid []  = "@(#)$Id: impwbstr.l,v 1.3 1997/03/05 17:53:41 markc Exp $";
 
-#include <iostream.h>
+#include <iostream>
+
+using std::cerr;
+using std::cout;
+using std::endl;
 
 // set the mode to be one of FILTER_MODE, BAD_FILTER_MODE, or NORMAL_MODE
 
@@ -6620,4 +6624,3 @@ void defWord(const char *defStr)
 
 	fprintf(yyout, "%s %s\n", defStr, word); 
 }
-

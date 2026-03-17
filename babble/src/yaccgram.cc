@@ -63,8 +63,8 @@ static char rcsid []  = "@(#)$Id: yaccgram.y,v 1.10 1997/03/05 17:47:51 markc Ex
 
 int yyerror(char *);
 int yylex();
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../mtc++/include/MTC++.h"

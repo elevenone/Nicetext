@@ -37,8 +37,8 @@
 
 static char rcsid []  = "@(#)$Id: grammar.cc,v 1.9 1997/02/23 22:33:21 markc Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include "../../mtc++/include/MTC++.h"
 #include "../../mtc++/include/mstring.h"
 #include "../../mtc++/include/errormsg.h"

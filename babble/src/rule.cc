@@ -34,8 +34,8 @@
 
 static char rcsid []  = "@(#)$Id: rule.cc,v 1.8 1997/02/24 00:12:19 markc Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdlib.h>
 #include "../../mtc++/include/MTC++.h"
 #include "../../mtc++/include/mstring.h"
@@ -467,4 +467,3 @@ MTCruleRHS * MTCrule::pickRHSSet()
 
 	return NULL;
 }
-

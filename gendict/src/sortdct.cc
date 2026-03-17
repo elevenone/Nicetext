@@ -66,8 +66,8 @@
 
 static char rcsid []  = "@(#)$Id: sortdct.cc,v 1.18 1997/08/18 03:05:27 markc Exp $";
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

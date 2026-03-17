@@ -3,6 +3,11 @@
 
 #include <fstream>
 
-using namespace std;
+using std::fstream;
+using std::ifstream;
+using std::ios;
+using std::ofstream;
+using std::streamoff;
+using std::streampos;
 
 #endif

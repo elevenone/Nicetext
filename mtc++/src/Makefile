@@ -3,16 +3,18 @@
 # Copyright (c) Mark T. Chapman 1995
 #
 
+include ../../config.mk
+
 LIBTARGET=../lib/libmtc++.a
 LIBOBJS= mstring.o stdermsg.o initfile.o
 SRCS=mstring.cc stdermsg.cc initfile.cc raofmake.cc raofmalt.cc raofread.cc bsttest.cc rbttest.cc listtest.cc inittest.cc numsize.cc
 
-CC=c++
-CFLAGS+=-std=gnu++98 $(CDEBUG) -I../include
-LFLAGS= -L../lib -lmtc++
+CPPFLAGS+=-I../include
+CXXFLAGS+=$(CDEBUG)
+LDLIBS+=-L../lib -lmtc++
 
 .cc.o: 
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 all: $(LIBTARGET) raofmake raofmalt raofread bsttest rbttest listtest inittest numsize
 
@@ -28,37 +30,37 @@ install: all
 	strip ../bin/raofmake ../bin/raofmalt ../bin/raofread ../bin/listtest ../bin/bsttest ../bin/rbttest ../bin/inittest ../bin/numsize
 
 depend:
-	makedepend -- $(CFLAGS) -- $(SRCS)
+	makedepend -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
 
 clean:
 	rm -f $(LIBTARGET) *.o *.core inittest bsttest rbttest listtest raofmake raofmalt raofread numsize ../bin/inittest ../bin/bsttest ../bin/rbttest ../bin/listtest ../bin/raofmake ../bin/raofmalt ../bin/raofread ../bin/numsize
 
 $(LIBTARGET): $(LIBOBJS)
-	ar -rc $(LIBTARGET) $(LIBOBJS)
-	ranlib $(LIBTARGET)
+	$(AR) -rc $(LIBTARGET) $(LIBOBJS)
+	$(RANLIB) $(LIBTARGET)
 
 # THESE ARE SAMPLE PROGRAMS
 
 raofmake: raofmake.o $(LIBTARGET)
-	g++  $(CFLAGS) -o raofmake raofmake.o $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o raofmake raofmake.o $(LDLIBS)
 
 raofmalt: raofmalt.o $(LIBTARGET)
-	g++  $(CFLAGS) -o raofmalt raofmalt.o $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o raofmalt raofmalt.o $(LDLIBS)
 
 raofread: raofread.o $(LIBTARGET)
-	g++  $(CFLAGS) -o raofread raofread.o $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o raofread raofread.o $(LDLIBS)
 
 listtest: listtest.o $(LIBTARGET)
-	g++  $(CFLAGS) -o listtest listtest.o $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o listtest listtest.o $(LDLIBS)
 
 bsttest: bsttest.o $(LIBTARGET)
-	g++  $(CFLAGS) -o bsttest bsttest.o $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o bsttest bsttest.o $(LDLIBS)
 
 rbttest: rbttest.o $(LIBTARGET)
-	g++  $(CFLAGS) -o rbttest rbttest.o $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o rbttest rbttest.o $(LDLIBS)
 
 inittest: inittest.o $(LIBTARGET)
-	g++  $(CFLAGS) -o inittest inittest.o $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o inittest inittest.o $(LDLIBS)
 
 numsize: numsize.o $(LIBTARGET)
-	g++  $(CFLAGS) -o numsize numsize.o $(LFLAGS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o numsize numsize.o $(LDLIBS)

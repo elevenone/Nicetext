@@ -3,6 +3,11 @@
 
 #include <iostream>
 
-using namespace std;
+using std::cerr;
+using std::cin;
+using std::cout;
+using std::endl;
+using std::istream;
+using std::ostream;
 
 #endif
