@@ -11,7 +11,7 @@ LIBDEPEND=$(LIBTARGET) ../../mtc++/lib/libmtc++.a
 
 CPPFLAGS+=-I../include -I../../mtc++/include 
 CXXFLAGS+=$(DEBUG)
-LDLIBS+=-L../../mtc++/lib 
+LDLIBS+=-L../../mtc++/lib $(LEX_LIBS)
 
 SRCS=impkimmo.cc impwbstr.cc impmsc.cc printint.cc
 
@@ -21,14 +21,15 @@ SRCS=impkimmo.cc impwbstr.cc impmsc.cc printint.cc
 all: $(LIBTARGET) impkimmo impwbstr impmsc printint  
 
 install: all
-	cp impkimmo ../../bin
-	cp impwbstr ../../bin
-	cp impmsc ../../bin
-	cp printint ../../bin
-	strip ../../bin/impkimmo ../../bin/impwbstr ../../bin/impmsc ../../bin/printint
+	@$(MKDIR_P) ../../bin
+	$(INSTALL_PROGRAM) impkimmo ../../bin/impkimmo
+	$(INSTALL_PROGRAM) impwbstr ../../bin/impwbstr
+	$(INSTALL_PROGRAM) impmsc ../../bin/impmsc
+	$(INSTALL_PROGRAM) printint ../../bin/printint
+	-$(STRIP) ../../bin/impkimmo ../../bin/impwbstr ../../bin/impmsc ../../bin/printint
 
 depend:
-	makedepend -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
+	$(MAKEDEPEND) -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
 
 clean:
 	rm -f *.o impkimmo impwbstr impmsc printint $(LIBTARGET) 
@@ -38,7 +39,7 @@ clean:
 	rm -f ../bin/printint ../../bin/printint
 
 impkimmo: impkimmo.o $(LIBDEPEND)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o impkimmo impkimmo.o -ll -lmtc++ $(LDLIBS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o impkimmo impkimmo.o -lmtc++ $(LDLIBS)
 
 impkimmo.cc: impkimmo.l impmsc.cc  
 	rm -f lex.yy.c
@@ -46,7 +47,7 @@ impkimmo.cc: impkimmo.l impmsc.cc
 	mv lex.yy.c impkimmo.cc
 
 impmsc: impmsc.o $(LIBDEPEND)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o impmsc impmsc.o -ll $(LDLIBS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o impmsc impmsc.o $(LDLIBS)
 
 impmsc.cc: impmsc.l impwbstr.cc  
 	rm -f lex.yy.c
@@ -54,7 +55,7 @@ impmsc.cc: impmsc.l impwbstr.cc
 	mv lex.yy.c impmsc.cc
 	
 impwbstr: impwbstr.o $(LIBDEPEND)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o impwbstr impwbstr.o -ll $(LDLIBS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o impwbstr impwbstr.o $(LDLIBS)
 
 impwbstr.cc: impwbstr.l 
 	rm -f lex.yy.c
@@ -62,6 +63,6 @@ impwbstr.cc: impwbstr.l
 	mv lex.yy.c impwbstr.cc
 
 printint: printint.o $(LIBDEPEND)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o printint printint.o -ll $(LDLIBS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o printint printint.o $(LDLIBS)
 
 # DO NOT DELETE

@@ -22,27 +22,31 @@ SRCS=dct2mstr.cc rawdict.cc genmodel.cc lexword.cc dictrec.cc typerec.cc sentmdl
 all: $(LIBTARGET) dct2mstr genmodel txt2dct listword sortdct 
 
 install: all
-	cp dct2mstr ../../bin
-	cp genmodel ../../bin
-	cp listword ../../bin
-	cp sortdct ../../bin
-	cp txt2dct  ../../bin
-	strip ../../bin/dct2mstr ../../bin/genmodel ../../bin/listword ../../bin/sortdct ../../bin/txt2dct
+	@$(MKDIR_P) ../../bin
+	$(INSTALL_PROGRAM) dct2mstr ../../bin/dct2mstr
+	$(INSTALL_PROGRAM) genmodel ../../bin/genmodel
+	$(INSTALL_PROGRAM) listword ../../bin/listword
+	$(INSTALL_PROGRAM) sortdct ../../bin/sortdct
+	$(INSTALL_PROGRAM) txt2dct ../../bin/txt2dct
+	-$(STRIP) ../../bin/dct2mstr ../../bin/genmodel ../../bin/listword ../../bin/sortdct ../../bin/txt2dct
 
 
 depend:
-	makedepend -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
+	$(MAKEDEPEND) -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
 
 clean:
 	rm -f *.o $(LIBTARGET) dct2mstr genmodel txt2dct listword sortdct txt2dct *.core 
 	rm -f ../bin/dct2mstr ../bin/genmodel ../bin/listword ../bin/sortdct ../../bin/dct2mstr ../../bin/genmodel ../../bin/listword ../../bin/sortdct ../bin/txt2dct ../../bin/txt2dct
 
 master: dct2mstr
-	dct2mstr
+	./dct2mstr
 
-$(LIBTARGET): $(LIBOBJS)
+$(LIBTARGET): ../lib $(LIBOBJS)
 	$(AR) -rc $(LIBTARGET) $(LIBOBJS)
 	$(RANLIB) $(LIBTARGET)
+
+../lib:
+	$(MKDIR_P) $@
 
 dct2mstr: dct2mstr.o $(LIBDEPEND)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o dct2mstr dct2mstr.o $(LDLIBS) 

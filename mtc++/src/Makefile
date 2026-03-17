@@ -19,25 +19,29 @@ LDLIBS+=-L../lib -lmtc++
 all: $(LIBTARGET) raofmake raofmalt raofread bsttest rbttest listtest inittest numsize
 
 install: all
-	cp raofmake ../bin
-	cp raofmalt ../bin
-	cp raofread ../bin
-	cp listtest ../bin
-	cp bsttest ../bin
-	cp rbttest ../bin
-	cp inittest ../bin
-	cp numsize ../bin
-	strip ../bin/raofmake ../bin/raofmalt ../bin/raofread ../bin/listtest ../bin/bsttest ../bin/rbttest ../bin/inittest ../bin/numsize
+	@$(MKDIR_P) ../bin
+	$(INSTALL_PROGRAM) raofmake ../bin/raofmake
+	$(INSTALL_PROGRAM) raofmalt ../bin/raofmalt
+	$(INSTALL_PROGRAM) raofread ../bin/raofread
+	$(INSTALL_PROGRAM) listtest ../bin/listtest
+	$(INSTALL_PROGRAM) bsttest ../bin/bsttest
+	$(INSTALL_PROGRAM) rbttest ../bin/rbttest
+	$(INSTALL_PROGRAM) inittest ../bin/inittest
+	$(INSTALL_PROGRAM) numsize ../bin/numsize
+	-$(STRIP) ../bin/raofmake ../bin/raofmalt ../bin/raofread ../bin/listtest ../bin/bsttest ../bin/rbttest ../bin/inittest ../bin/numsize
 
 depend:
-	makedepend -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
+	$(MAKEDEPEND) -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
 
 clean:
 	rm -f $(LIBTARGET) *.o *.core inittest bsttest rbttest listtest raofmake raofmalt raofread numsize ../bin/inittest ../bin/bsttest ../bin/rbttest ../bin/listtest ../bin/raofmake ../bin/raofmalt ../bin/raofread ../bin/numsize
 
-$(LIBTARGET): $(LIBOBJS)
+$(LIBTARGET): ../lib $(LIBOBJS)
 	$(AR) -rc $(LIBTARGET) $(LIBOBJS)
 	$(RANLIB) $(LIBTARGET)
+
+../lib:
+	$(MKDIR_P) $@
 
 # THESE ARE SAMPLE PROGRAMS
 

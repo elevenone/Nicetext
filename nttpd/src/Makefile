@@ -21,15 +21,16 @@ YACC=yacc -d -v $(YDEBUG)
 all: nttpd
 
 depend:
-	makedepend -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
+	$(MAKEDEPEND) -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
 
 clean:
 	rm -f *.o *.core $(LIBTARGET) nttpd 
 	rm -f ../bin/nttpd ../../bin/nttpd
 
 install: all
-	cp nttpd ../../bin
-	strip ../../bin/nttpd
+	@$(MKDIR_P) ../../bin
+	$(INSTALL_PROGRAM) nttpd ../../bin/nttpd
+	-$(STRIP) ../../bin/nttpd
 
 nttpd: nttpd.o $(LIBDEPEND)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o nttpd nttpd.o $(LDLIBS) 

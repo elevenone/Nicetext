@@ -57,6 +57,7 @@ install: quickstart
 	$(MAKE) -C nttpd/src install
 
 quickstart:
-	@echo "#!/bin/sh" > bin/qstart-nttpd
-	@echo `pwd`/bin/"nttpd -b `pwd`"/examples/database >> bin/qstart-nttpd
+	@$(MKDIR_P) bin
+	@printf '%s\n' '#!/bin/sh' > bin/qstart-nttpd
+	@printf '%s\n' "$(CURDIR_ABS)/bin/nttpd -b $(CURDIR_ABS)/examples/database" >> bin/qstart-nttpd
 	chmod a+rx bin/qstart-nttpd

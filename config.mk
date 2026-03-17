@@ -10,6 +10,24 @@ AR ?= ar
 RANLIB ?= ranlib
 LEX ?= flex -f
 YACC ?= yacc -d
+MKDIR_P ?= mkdir -p
+INSTALL ?= install
+INSTALL_PROGRAM ?= $(INSTALL) -m 755
+INSTALL_DATA ?= $(INSTALL) -m 644
+STRIP ?= strip
+MAKEDEPEND ?= makedepend
+CURDIR_ABS ?= $(shell pwd)
+
+UNAME_S := $(shell uname -s 2>/dev/null || echo Unknown)
+
+ifeq ($(origin LEX_LIBS), undefined)
+ifeq ($(UNAME_S),Linux)
+LEX_LIBS ?= -lfl
+endif
+ifeq ($(UNAME_S),Darwin)
+LEX_LIBS ?= -ll
+endif
+endif
 
 CPPFLAGS ?=
 CXXFLAGS ?= -std=gnu++98

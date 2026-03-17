@@ -21,7 +21,7 @@ SRCS=bits2txt.cc txt2bits.cc nicetext.cc scramble.cc expgram.cc gramtest.cc bitc
 all: $(LIBTARGET) nicetext scramble expgram gramtest bitcp
 
 depend:
-	makedepend -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
+	$(MAKEDEPEND) -- $(CPPFLAGS) $(CXXFLAGS) -- $(SRCS)
 
 clean:
 	rm -f *.o *.core $(LIBTARGET) nicetext scramble expgram gramtest bitcp 
@@ -30,16 +30,20 @@ clean:
 	rm -f ../bin/nicetext ../bin/scramble ../bin/expgram ../bin/gramtest ../bin/bitcp
 
 install: all
-	cp nicetext ../../bin
-	cp scramble ../../bin
-	cp gramtest ../../bin
-	cp expgram ../../bin
-	cp bitcp ../../bin
-	strip ../../bin/nicetext ../../bin/scramble ../../bin/gramtest ../../bin/expgram ../../bin/bitcp
+	@$(MKDIR_P) ../../bin
+	$(INSTALL_PROGRAM) nicetext ../../bin/nicetext
+	$(INSTALL_PROGRAM) scramble ../../bin/scramble
+	$(INSTALL_PROGRAM) gramtest ../../bin/gramtest
+	$(INSTALL_PROGRAM) expgram ../../bin/expgram
+	$(INSTALL_PROGRAM) bitcp ../../bin/bitcp
+	-$(STRIP) ../../bin/nicetext ../../bin/scramble ../../bin/gramtest ../../bin/expgram ../../bin/bitcp
 
-$(LIBTARGET): $(LIBOBJS)
+$(LIBTARGET): ../lib $(LIBOBJS)
 	$(AR) -rc $(LIBTARGET) $(LIBOBJS)
 	$(RANLIB) $(LIBTARGET)
+
+../lib:
+	$(MKDIR_P) $@
 
 nicetext: nicetext.o $(LIBDEPEND)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o nicetext nicetext.o $(LDLIBS) 
