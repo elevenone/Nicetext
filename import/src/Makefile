@@ -18,6 +18,10 @@ SRCS=impkimmo.cc impwbstr.cc impmsc.cc printint.cc
 .cc.o:
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
+impkimmo.o: CXXFLAGS += $(GENERATED_CXXFLAGS)
+impmsc.o: CXXFLAGS += $(GENERATED_CXXFLAGS)
+impwbstr.o: CXXFLAGS += $(GENERATED_CXXFLAGS)
+
 all: $(LIBTARGET) impkimmo impwbstr impmsc printint  
 
 install: all

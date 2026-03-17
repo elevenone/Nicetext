@@ -18,6 +18,9 @@ SRCS=bits2txt.cc txt2bits.cc nicetext.cc scramble.cc expgram.cc gramtest.cc bitc
 .cc.o:
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
+lexgram.o: CXXFLAGS += $(GENERATED_CXXFLAGS)
+yaccgram.o: CXXFLAGS += $(GENERATED_CXXFLAGS)
+
 all: $(LIBTARGET) nicetext scramble expgram gramtest bitcp
 
 depend:

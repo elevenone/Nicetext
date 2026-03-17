@@ -18,6 +18,7 @@ SRCS=dct2mstr.cc rawdict.cc genmodel.cc lexword.cc dictrec.cc typerec.cc sentmdl
 .cc.o:
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
+lexword.o: CXXFLAGS += $(GENERATED_CXXFLAGS)
 
 all: $(LIBTARGET) dct2mstr genmodel txt2dct listword sortdct 
 

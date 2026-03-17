@@ -54,7 +54,4 @@ _pkd/*
 /mtc++/bin/raofread
 /mtc++/bin/rbttest
 
-/nttpd/src/*.o
-/nttpd/src/nttpd
-
 /rinfo/rinfo

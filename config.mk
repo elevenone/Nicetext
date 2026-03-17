@@ -19,6 +19,7 @@ MAKEDEPEND ?= makedepend
 CURDIR_ABS ?= $(shell pwd)
 
 UNAME_S := $(shell uname -s 2>/dev/null || echo Unknown)
+CXX_VERSION_LINE := $(shell $(CXX) --version 2>/dev/null | head -n 1)
 
 ifeq ($(origin LEX_LIBS), undefined)
 ifeq ($(UNAME_S),Linux)
@@ -29,8 +30,13 @@ LEX_LIBS ?= -ll
 endif
 endif
 
+GENERATED_CXXFLAGS ?=
+ifneq ($(findstring clang,$(CXX_VERSION_LINE)),)
+GENERATED_CXXFLAGS += -Wno-deprecated-register
+endif
+
 CPPFLAGS ?=
-CXXFLAGS ?= -std=gnu++98
+CXXFLAGS ?= -std=gnu++11
 CFLAGS ?=
 LDFLAGS ?=
 LDLIBS ?=

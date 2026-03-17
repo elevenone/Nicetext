@@ -5,16 +5,13 @@
 1. Do a "gmake install"  (If you don't have gmake and a GNU C++ compiler
    for your system then read the PORTING file for more details.)
 
-2. Read the DESCRIPTION section of the man pages for "nttpd", 
-   "nicetext", and "scramble". 
-   (either "more man/cat1/nttpd.1" or "man nttpd") 
+2. Read the DESCRIPTION section of the man pages for "nicetext" and
+   "scramble".
 
-3. Try running the "bin/qstart-nttpd" shell-script 
+3. Try the command-line workflow directly:
+   ./nicetext_message.sh
 
-4. Point your favorite browser to http://localhost:2119/
-
-Be aware that there is MUCH more to the software than the nttpd program, 
-but it is the quickest way to get a flavor for what this system can do.
+4. Run "make check" to verify round-trip behavior on the bundled fixtures.
 
 ******************* INTERMEDIATE ************
 

@@ -3,7 +3,7 @@
 
 include config.mk
 
-.PHONY: all database depend clean backup snapshot tarball install quickstart RINFO
+.PHONY: all check database depend clean backup snapshot tarball install RINFO test
 
 all: 
 	$(MAKE) -C rinfo
@@ -11,7 +11,6 @@ all:
 	$(MAKE) -C gendict/src
 	$(MAKE) -C babble/src
 #	$(MAKE) -C import/src
-	$(MAKE) -C nttpd/src
 
 database:
 	$(MAKE) -C examples/database
@@ -21,16 +20,13 @@ depend:
 	$(MAKE) -C gendict/src depend
 	$(MAKE) -C babble/src depend
 	$(MAKE) -C import/src depend
-	$(MAKE) -C nttpd/src depend
 
 clean:
 	$(MAKE) -C mtc++/src clean
 	$(MAKE) -C gendict/src clean
 	$(MAKE) -C babble/src clean
-	$(MAKE) -C nttpd/src clean
 	$(MAKE) -C import/src clean
 	$(MAKE) -C rinfo clean
-	rm -f bin/qstart-nttpd
 
 backup: clean
 	rm -f ../nicetext.zip; zip -9 -r ../nicetext.zip *; 
@@ -48,16 +44,14 @@ tarball: clean
 	@echo "Compressing tar archive..."
 	cd ..; gzip --best nicetext-0.9.tar
 
-install: quickstart
+install:
 	$(MAKE) -C rinfo install
 	$(MAKE) -C mtc++/src install
 	$(MAKE) -C gendict/src install
 	$(MAKE) -C babble/src install
 	$(MAKE) -C import/src install
-	$(MAKE) -C nttpd/src install
 
-quickstart:
-	@$(MKDIR_P) bin
-	@printf '%s\n' '#!/bin/sh' > bin/qstart-nttpd
-	@printf '%s\n' "$(CURDIR_ABS)/bin/nttpd -b $(CURDIR_ABS)/examples/database" >> bin/qstart-nttpd
-	chmod a+rx bin/qstart-nttpd
+test: all
+	./_tests/run_roundtrip_tests.sh
+
+check: test
